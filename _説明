@@ -7,6 +7,9 @@ https://qiita.com/hitotch/items/4f5ef016cabe040fd2a2
 アイコン マテリアライズCSS
 https://materializecss.com/icons.html
 
+ビデオプレーヤー video js
+https://videojs.com/
+
 section8 livewire インストール方法
 
 session 12 画像リサイズ プラグイン http://image.intervention.io/
@@ -16,3 +19,15 @@ section 16 動画アップロード プログレスバー
 section 17 動画アップローダー スクリプト
 
 seciotn 20 FFMPEGの使い方
+
+section20~  queue jobsの使い方は編集するとphp artisan queue:workをその都度する必要がある。本番環境はwork 開発環境はphp artisan queue:listenで
+https://reffect.co.jp/laravel/laravel-queue-setting-manuplate#2
+
+section29 video ポリシー
+
+section32 video player video js https://videojs.com/
+section34 視聴回数カウントスクリプト
+
+section35-43 いいねボタン実装
+
+section44 動画の最初のサムネイル設定

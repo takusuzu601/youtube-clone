@@ -7,7 +7,9 @@ use App\Jobs\CreateThumbnailFromVideo;
 use Livewire\WithFileUploads;
 use App\Models\Channel;
 use App\Models\Video;
+use Illuminate\Contracts\Queue\Job;
 use Livewire\Component;
+
 
 class CreateVideo extends Component
 {
@@ -44,6 +46,7 @@ class CreateVideo extends Component
             'visibility' => 'private',
             'path' => explode('/', $path)[1]
         ]);
+
         //disptach jobs
         CreateThumbnailFromVideo::dispatch($this->video);
         ConvertVideoForStreaming::dispatch($this->video);

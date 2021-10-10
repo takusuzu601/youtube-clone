@@ -21,11 +21,14 @@
 
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+    @stack('custom-css')
     <!--materile icon-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!--custom css-->
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
     @livewireStyles
 </head>
 
@@ -45,9 +48,13 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a href="{{ route('video.all') }}" class="nav-link">All Video</a>
-                        </li>
+                        @auth
+                            <li class="nav-item">
+                                <a href="{{ route('video.all', ['channel' => auth()->user()->channel]) }}"
+                                    class="nav-link">All
+                                    Video</a>
+                            </li>
+                        @endauth
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -85,7 +92,7 @@
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                                                                                     document.getElementById('logout-form').submit();">
+                                                                                                                                                                                             document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -101,10 +108,12 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main>
             @yield('content')
         </main>
     </div>
+
+    @stack('scripts')
     @livewireScripts
 </body>
 

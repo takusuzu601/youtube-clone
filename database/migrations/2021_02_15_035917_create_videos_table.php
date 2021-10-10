@@ -18,11 +18,12 @@ class CreateVideosTable extends Migration
             $table->unsignedBigInteger('channel_id');
             $table->string('title');
             $table->text('description')->nullable();
+            $table->integer('views')->default(0);
             $table->string('uid');
             $table->string('thumbnail_image')->nullable();
             $table->text('path')->nullable();
             $table->string('proccessed_file')->nullable();
-            $table->enum('visibility', ['private', 'public', 'unslited'])->default('private');
+            $table->enum('visibility', ['private', 'public', 'unlisted'])->default('private');
 
             $table->boolean('processed')->default(false);
             $table->boolean('allow_likes')->default(false);
