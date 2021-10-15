@@ -61,4 +61,14 @@ class Video extends Model
     {
         return $this->dislikes()->where('user_id', auth()->id())->exists();
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class)->whereNull('reply_id');
+    }
+
+    public function AllCommentCount()
+    {
+        return $this->hasMany(Comment::class)->count();
+    }
 }

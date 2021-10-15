@@ -4,12 +4,13 @@
             <img src="{{ asset('/images/' . $channel->image) }}" class="rounded-circle" alt="">
             <div class="ml-2">
                 <h4>{{ $channel->name }}</h4>
-                <p class="gray-text text-sm">1000 subscribers</p>
+                <p class="gray-text text-sm">{{ $channel->subscribers() }} subscribers</p>
             </div>
         </div>
         <div>
-            <button class="btn btn-lg text-uppercase btn-secondary">
-                Subscribe
+            <button wire:click.prevent="toggle"
+                class="btn btn-lg text-uppercase {{ $userSubscribed ? 'sub-btn-active' : 'sub-btn' }}">
+                {{ $userSubscribed ? 'チャンネル登録済' : 'チャンネル登録' }}
             </button>
         </div>
     </div>

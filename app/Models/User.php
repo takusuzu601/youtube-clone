@@ -54,7 +54,7 @@ class User extends Authenticatable
 
     public function subscriptions()
     {
-        $this->hasMany(Subscription::class);
+        return $this->hasMany(Subscription::class);
     }
 
     public function subscribedChannels()
@@ -65,5 +65,10 @@ class User extends Authenticatable
     public function isSubscribedTo(Channel $channel)
     {
         return (bool) $this->subscriptions->where('channel_id', $channel->id)->count();
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }

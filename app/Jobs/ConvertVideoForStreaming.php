@@ -40,7 +40,7 @@ class ConvertVideoForStreaming implements ShouldQueue
         $low = (new X264('aac'))->setKiloBitrate(500);
         $high = (new X264('aac'))->setKiloBitrate(1000);
 
-        FFMpeg::fromDisk('videos-temp')
+        $media = FFMpeg::fromDisk('videos-temp')
             ->open($this->video->path)
             ->exportForHLS()
             ->addFormat($low, function ($filters) {
@@ -57,13 +57,21 @@ class ConvertVideoForStreaming implements ShouldQueue
             ->toDisk('videos')
             ->save($destination);
 
+        $seconds = $media->getDurationInSeconds();
         $this->video->update([
             'processed' => true,
-            'proccessed_file' => $this->video->uid . '.m3u8'
+            'proccessed_file' => $this->video->uid . '.m3u8',
+            'duration' => $this->formatDuration($seconds)
         ]);
 
         //delete temp video
         $result = Storage::disk('videos-temp')->delete($this->video->path);
         Log::info($this->video->path . ' video was deleted from videos-temp folder');
+    }
+
+    public function formatDuration($seconds)
+    {
+        $duration = gmdate('H:i:s', $seconds);
+        return $duration;
     }
 }

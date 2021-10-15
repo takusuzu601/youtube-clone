@@ -37,7 +37,7 @@ class Channel extends Model
 
     public function subscriptions()
     {
-        $this->hasMany(Subscription::class);
+        return $this->hasMany(Subscription::class);
     }
 
     public function subscribers()
